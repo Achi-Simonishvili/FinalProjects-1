@@ -1,10 +1,13 @@
-﻿namespace GuessNumber
+﻿using GuessNumber.UI;
+
+namespace GuessNumber
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            GameMenu menu = new GameMenu();
+            menu.Start();
         }
     }
 }
