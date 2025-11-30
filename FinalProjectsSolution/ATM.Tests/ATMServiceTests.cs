@@ -115,7 +115,6 @@ namespace ATM.Tests
             var svc = new ATMService(storage);
             svc.Withdraw(user, 100m);
 
-            // Balance unchanged and SaveUsers should not be called
             Assert.Equal(50m, user.Balance);
             Assert.Equal(0, storage.SaveCalls);
         }
