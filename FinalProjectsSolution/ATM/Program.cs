@@ -1,10 +1,13 @@
-﻿namespace ATM
+﻿using ATM.Interfaces;
+
+namespace ATM
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var menu = new ATMMenu();
+            menu.Start();
         }
     }
 }

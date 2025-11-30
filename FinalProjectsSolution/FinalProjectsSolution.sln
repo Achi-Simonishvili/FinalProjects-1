@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM", "ATM\ATM.csproj", "{C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangman.Tests", "Hangman.Tests\Hangman.Tests.csproj", "{C2F2712A-DAF6-4313-8884-EB07A62DBD9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.Tests", "ATM.Tests\ATM.Tests.csproj", "{1F2123E8-A227-4162-AAE2-4FABBA22F745}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{C2F2712A-DAF6-4313-8884-EB07A62DBD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2F2712A-DAF6-4313-8884-EB07A62DBD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2F2712A-DAF6-4313-8884-EB07A62DBD9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F2123E8-A227-4162-AAE2-4FABBA22F745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F2123E8-A227-4162-AAE2-4FABBA22F745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F2123E8-A227-4162-AAE2-4FABBA22F745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F2123E8-A227-4162-AAE2-4FABBA22F745}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
