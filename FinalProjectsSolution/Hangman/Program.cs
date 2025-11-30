@@ -1,10 +1,13 @@
-﻿namespace Hangman
+﻿using Hangman.UI;
+
+namespace Hangman
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            HangmanMenu menu = new HangmanMenu();
+            menu.Start();
         }
     }
 }
