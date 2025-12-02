@@ -34,9 +34,9 @@ public class XmlStorageService
             new XElement("Players",
                 players.Select(p =>
                     new XElement("Player",
-                        new XElement("Username", p.Username),
-                        new XElement("Password", p.Password),
-                        new XElement("BestScore", p.BestScore)
+                    new XElement("Username", p.Username),
+                    new XElement("Password", p.Password),
+                    new XElement("BestScore", p.BestScore)
                     )
                 )
             )

@@ -70,11 +70,12 @@ namespace GuessNumber.Services
                     .Select(l =>
                     {
                         var parts = l.Split(',');
-                        return new Player(parts[0], parts[1])
+                        var p = new Player(parts[0], string.Empty) 
                         {
                             BestScore = int.Parse(parts[1]),
                             GamesPlayed = int.Parse(parts[2])
                         };
+                        return p;
                     })
                     .OrderByDescending(p => p.BestScore)
                     .Take(top)

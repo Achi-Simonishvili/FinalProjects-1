@@ -111,6 +111,7 @@ namespace Hangman.UI
                 Console.WriteLine($"Logged in as: {_currentPlayer.Username}");
                 Console.WriteLine("1. Play Hangman");
                 Console.WriteLine("2. Logout");
+                Console.WriteLine("3. Top 10 Players");
                 Console.Write("Choose option: ");
 
                 string choice = Console.ReadLine();
@@ -124,6 +125,10 @@ namespace Hangman.UI
                     case "2":
                         _currentPlayer = null;
                         return;
+
+                    case "3":
+                        ShowTop10();
+                        break;
 
                     default:
                         Console.WriteLine("Invalid choice. Press ENTER.");
@@ -252,7 +257,7 @@ namespace Hangman.UI
             }
 
             Console.Write("\nEnter your final guess for the full word: ");
-            string finalGuess = Console.ReadLine()?.Trim().ToLower() ?? string.Empty;
+            string finalGuess = Console.ReadLine().Trim().ToLower() ?? string.Empty;
 
             if (finalGuess == _game.SecretWord)
             {

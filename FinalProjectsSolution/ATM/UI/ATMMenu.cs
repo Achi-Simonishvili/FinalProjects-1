@@ -49,7 +49,7 @@
             Console.WriteLine("4 - Exit");
             Console.Write("Your choice: ");
 
-            string action = Console.ReadLine()?.Trim() ?? "";
+            string action = Console.ReadLine().Trim() ?? "";
 
             switch (action)
             {

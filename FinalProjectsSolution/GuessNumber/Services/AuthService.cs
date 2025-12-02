@@ -16,7 +16,6 @@ namespace GuessNumber.Services
                 File.WriteAllText(_filePath, "Username,Password,BestScore,GamesPlayed\n");
         }
 
-        // Register new user
         public bool Register(string username, string password, out string message)
         {
             try
@@ -41,7 +40,6 @@ namespace GuessNumber.Services
             }
         }
 
-        // Login existing user
         public bool Login(string username, string password, out Player player, out string message)
         {
             player = null;
@@ -90,7 +88,7 @@ namespace GuessNumber.Services
                 }
                 File.WriteAllLines(_filePath, lines);
             }
-            catch { /* Ignore errors for now */ }
+            catch {  }
         }
     }
 }

@@ -43,9 +43,6 @@ namespace Calculator.UI
                 {
                     double result = DoOperation(option, num1, num2);
 
-                    if (result == 0)
-                        result = 0;
-
                     Console.WriteLine($"\nResult: {result}");
                 }
                 catch (Exception ex)
@@ -70,7 +67,7 @@ namespace Calculator.UI
             while (true)
             {
                 Console.Write(message);
-                string? input = Console.ReadLine();
+                string input = Console.ReadLine();
 
                 if (double.TryParse(input, out number))
                     return number;

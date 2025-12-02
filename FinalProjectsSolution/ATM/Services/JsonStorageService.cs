@@ -8,7 +8,8 @@ public class JsonStorageService : IJsonStorageService
 
     public List<User> LoadUsers()
     {
-        if (!File.Exists(_usersFile)) return new List<User>();
+        if (!File.Exists(_usersFile)) 
+            return new List<User>();
         string json = File.ReadAllText(_usersFile);
         return JsonSerializer.Deserialize<List<User>>(json) ?? new List<User>();
     }
@@ -21,7 +22,8 @@ public class JsonStorageService : IJsonStorageService
 
     public List<TransactionLog> LoadLogs()
     {
-        if (!File.Exists(_logFile)) return new List<TransactionLog>();
+        if (!File.Exists(_logFile)) 
+            return new List<TransactionLog>();
         string json = File.ReadAllText(_logFile);
         return JsonSerializer.Deserialize<List<TransactionLog>>(json) ?? new List<TransactionLog>();
     }

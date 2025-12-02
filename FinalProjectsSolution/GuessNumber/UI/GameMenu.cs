@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using GuessNumber.Models;
 using GuessNumber.Services;
 
@@ -8,12 +11,14 @@ namespace GuessNumber.UI
     {
         private readonly GameService _gameService;
         private readonly AuthService _authService;
+        private readonly ScoreService _scoreService;
         private Player _player;
 
         public GameMenu()
         {
             _gameService = new GameService();
             _authService = new AuthService();
+            _scoreService = new ScoreService();
         }
 
         public void Start()
@@ -21,7 +26,6 @@ namespace GuessNumber.UI
             Console.Clear();
             Console.WriteLine("==== Welcome to Guess Number ====\n");
 
-            // Login / Register loop
             while (_player == null)
             {
                 Console.WriteLine("1. Register");
@@ -46,7 +50,6 @@ namespace GuessNumber.UI
                 }
             }
 
-            // Main game menu
             MainMenu();
         }
 
@@ -93,7 +96,7 @@ namespace GuessNumber.UI
                 Console.WriteLine($"Hello, {_player.Username}! Your best score: {_player.BestScore}\n");
                 Console.WriteLine("1. Play Game");
                 Console.WriteLine("2. Show TOP 10 Players");
-                Console.WriteLine("3. Logout");       // ← new option
+                Console.WriteLine("3. Logout");
                 Console.WriteLine("4. Exit");
                 Console.Write("\nChoose: ");
 
@@ -121,7 +124,6 @@ namespace GuessNumber.UI
                 Console.WriteLine("\nPress ENTER to continue...");
                 Console.ReadLine();
             }
-
         }
 
         private void PlayGame()
@@ -161,6 +163,9 @@ namespace GuessNumber.UI
                     _player.BestScore = Math.Max(_player.BestScore, finalScore);
                     _player.GamesPlayed++;
                     _authService.UpdatePlayer(_player);
+
+                    _scoreService.SaveScore(_player, _player.BestScore);
+
                     won = true;
                     break;
                 }
@@ -175,6 +180,8 @@ namespace GuessNumber.UI
                 Console.WriteLine($"\nYou lost! The number was {_gameService.SecretNumber}");
                 _player.GamesPlayed++;
                 _authService.UpdatePlayer(_player);
+
+                _scoreService.SaveScore(_player, _player.BestScore);
             }
         }
 
@@ -183,20 +190,15 @@ namespace GuessNumber.UI
             Console.Clear();
             Console.WriteLine("==== TOP 10 PLAYERS ====\n");
 
-            var lines = System.IO.File.ReadAllLines("players.csv").Skip(1);
-            var players = new System.Collections.Generic.List<Player>();
+            var top = _scoreService.GetTopPlayers(10);
 
-            foreach (var line in lines)
+            if (top == null || top.Count == 0)
             {
-                var parts = line.Split(',');
-                players.Add(new Player(parts[0], parts[1])
-                {
-                    BestScore = int.Parse(parts[2]),
-                    GamesPlayed = int.Parse(parts[3])
-                });
+                Console.WriteLine("No scores yet.");
+                return;
             }
 
-            foreach (var p in players.OrderByDescending(p => p.BestScore).Take(10))
+            foreach (var p in top)
             {
                 Console.WriteLine($"{p.Username} | Best Score: {p.BestScore} | Games: {p.GamesPlayed}");
             }
