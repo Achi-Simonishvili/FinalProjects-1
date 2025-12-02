@@ -11,7 +11,7 @@ public class UserService
         _users = _storage.LoadUsers();
     }
 
-    public User Register(string name, string surname, string personalNumber)
+    public User Register(string name, string surname, int personalNumber)
     {
         if (_users.Any(u => u.PersonalNumber == personalNumber))
         {
@@ -19,10 +19,10 @@ public class UserService
             return null;
         }
 
-        string pin;
+        int pin;
         do
         {
-            pin = new Random().Next(1000, 10000).ToString();
+            pin = new Random().Next(1000, 10000);
         } while (_users.Any(u => u.Pin == pin));
 
         var user = new User
@@ -40,7 +40,7 @@ public class UserService
         return user;
     }
 
-    public User Login(string personalNumber, string pin)
+    public User Login(int personalNumber, int pin)
     {
         return _users.FirstOrDefault(u => u.PersonalNumber == personalNumber && u.Pin == pin);
     }

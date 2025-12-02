@@ -18,6 +18,7 @@
 
         while (currentUser == null)
         {
+            Console.Clear();
             Console.WriteLine("Choose an option:");
             Console.WriteLine("1 - Login");
             Console.WriteLine("2 - Register");
@@ -87,10 +88,8 @@
 
     private User Login()
     {
-        Console.Write("Enter personal number: ");
-        string pn = Console.ReadLine()?.Trim() ?? "";
-        Console.Write("Enter 4-digit PIN: ");
-        string pin = Console.ReadLine()?.Trim() ?? "";
+        int pn = PromptForPersonalNumber("Enter personal number: ");
+        int pin = PromptForPin("Enter 4-digit PIN: ");
 
         var user = _userService.Login(pn, pin);
         if (user == null)
@@ -108,8 +107,7 @@
         Console.Write("Enter your surname: ");
         string surname = Console.ReadLine()?.Trim() ?? "";
 
-        Console.Write("Enter personal number: ");
-        string personalNumber = Console.ReadLine()?.Trim() ?? "";
+        int personalNumber = PromptForPersonalNumber("Enter personal number: ");
 
         var user = _userService.Register(name, surname, personalNumber);
         if (user != null)
@@ -117,5 +115,31 @@
             Console.WriteLine($"\nRegistration successful! Your 4-digit PIN is: {user.Pin}\n");
         }
         return user;
+    }
+
+    private int PromptForPersonalNumber(string prompt)
+    {
+        while (true)
+        {
+            Console.Write(prompt);
+            string? input = Console.ReadLine()?.Trim();
+            if (int.TryParse(input, out int value) && value > 0)
+                return value;
+
+            Console.WriteLine("Personal number must be a positive integer. Please try again.");
+        }
+    }
+
+    private int PromptForPin(string prompt)
+    {
+        while (true)
+        {
+            Console.Write(prompt);
+            string? input = Console.ReadLine()?.Trim();
+            if (int.TryParse(input, out int pin) && pin >= 1000 && pin <= 9999)
+                return pin;
+
+            Console.WriteLine("PIN must be a 4-digit number (1000-9999). Please try again.");
+        }
     }
 }

@@ -3,7 +3,7 @@
     public int Id { get; set; }
     public string Name { get; set; } = "";
     public string Surname { get; set; } = "";
-    public string PersonalNumber { get; set; } = "";
-    public string Pin { get; set; } = ""; 
+    public int PersonalNumber { get; set; } = 0;
+    public int Pin { get; set; } = 0; 
     public decimal Balance { get; set; } = 0;
 }
